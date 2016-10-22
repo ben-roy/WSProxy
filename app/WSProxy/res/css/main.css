@@ -147,7 +147,7 @@ a:active  {color:yellow; background-color:transparent; text-decoration:underline
 #newserlink{
     top: -20px;
     position: relative;
-    visibility: hidden;
+    /*visibility: hidden;*/
 }
 
 #newserlink p{
@@ -169,7 +169,7 @@ a:active  {color:yellow; background-color:transparent; text-decoration:underline
 
 #soapclientdiv{
     position: relative;
-    top: -70px;
+    top: -186px;
     text-align: center;
 }
 
@@ -183,7 +183,7 @@ a:active  {color:yellow; background-color:transparent; text-decoration:underline
 }
 
 #startdiv img{
-    top: -135px;
+    //top: -135px;
     position: relative;
     display: block;
     margin: auto;

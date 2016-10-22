@@ -3,6 +3,7 @@
   <DataEditors />
   <InvokeSettings>
     <RecentlyUsedUris>
+      <Uri>http://localhost:8890/bmiwsv28/billing?wsdl</Uri>
       <Uri>http://localhost:8890/bmiwsv27/billing?wsdl</Uri>
     </RecentlyUsedUris>
   </InvokeSettings>

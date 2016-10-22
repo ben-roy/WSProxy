@@ -4,6 +4,8 @@
 $ = jQuery = require('..\\WSProxy\\res\\js\\jquery-3.0.0.min.js');
 var http = require('http');
 const url = require('url');
+// Load native UI library
+var gui = require('nw.gui');
 var httpswsdlurl, httpshost, httpsport, httpspath;
 var started = false;
 var server;
@@ -96,11 +98,18 @@ function createUrlParts(httpswsdlurl) {
 }
 
 function getWSDLFile(httpswsdlurl) {
+    $("#copyClipboard").css('visibility', 'hidden');
+    $("#newserlink p").text("Your new Proxy server will be somthing like:");
+    $("#newserlink a:last").text("http://localhost:8888/xxxwsv2x/billing?wsdl");
     if (validateWSDLUrl(httpswsdlurl))
         $.get(httpswsdlurl, '', function (data, textStatus, jqXHR) {
             var xmlText = new XMLSerializer().serializeToString(data);
             log("succesfuly got the WSDL file.")
             openNewWindow(xmlText);
+            createUrlParts(httpswsdlurl);
+            $("#newserlink p").text("Use below address as your new web service: ");
+            $("#newserlink a:last").text("http://localhost:"+httpsport+httpspath);
+            $("#copyClipboard").css('visibility', 'visible');
             //alert(xmlText);
             //alert( "Data Loaded: " + data );
         }, 'xml');
@@ -111,6 +120,10 @@ function openNewWindow(data) {
         function (new_win) {
             new_win.data = data;
         });
+}
+
+function openHelpWindow() {
+    nw.Window.open('./app/WSProxy/help.html');
 }
 
 function startService() {
@@ -156,3 +169,11 @@ $(function () {
         $('#wsdlurl').val(httpswsdlurl.trim());
     }
 });
+
+function copy2Clipboard(){
+// We can not create a clipboard, we have to receive the system clipboard
+    var clipboard = gui.Clipboard.get();
+    // Or write something
+    clipboard.set("http://localhost:"+httpsport+httpspath);
+
+}
